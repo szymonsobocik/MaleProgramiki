@@ -36,7 +36,14 @@ public class MainFrame extends JFrame {
     private void btM3UListActionPerformed(ActionEvent e) {
         int returnVal = fileChooser.showOpenDialog(this);
         if (returnVal == JFileChooser.APPROVE_OPTION){
-            ListaM3U.utworzListeM3U(fileChooser.getSelectedFile());
+            ListaM3U.utworzListeM3U(fileChooser.getSelectedFile(), false);
+        }
+    }
+
+    private void btM3UListRecursiveActionPerformed(ActionEvent e) {
+        int returnVal = fileChooser.showOpenDialog(this);
+        if (returnVal == JFileChooser.APPROVE_OPTION){
+            ListaM3U.utworzListeM3U(fileChooser.getSelectedFile(), true);
         }
     }
 
@@ -44,6 +51,7 @@ public class MainFrame extends JFrame {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
         btDatyZdjec = new JButton();
         btM3UList = new JButton();
+        btM3UListRecursive = new JButton();
 
         //======== this ========
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -59,7 +67,7 @@ public class MainFrame extends JFrame {
         });
         contentPane.add(btDatyZdjec, new GridBagConstraints(0, 0, 1, 1, 0.0, 0.0,
             GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-            new Insets(0, 0, 5, 5), 0, 0));
+            new Insets(0, 0, 5, 0), 0, 0));
 
         //---- btM3UList ----
         btM3UList.setText("Create M3U list");
@@ -70,7 +78,19 @@ public class MainFrame extends JFrame {
         });
         contentPane.add(btM3UList, new GridBagConstraints(0, 1, 1, 1, 0.0, 0.0,
             GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-            new Insets(0, 0, 5, 5), 0, 0));
+            new Insets(0, 0, 5, 0), 0, 0));
+
+        //---- btM3UListRecursive ----
+        btM3UListRecursive.setText("Create M3U list recursive");
+        btM3UListRecursive.setToolTipText("Tworzy listy M3U we wskazanym katalogu i rekursywnie w g\u0142\u0105b.");
+        btM3UListRecursive.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                btM3UListRecursiveActionPerformed(e);
+            }
+        });
+        contentPane.add(btM3UListRecursive, new GridBagConstraints(0, 2, 1, 1, 0.0, 0.0,
+            GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+            new Insets(0, 0, 0, 0), 0, 0));
         pack();
         setLocationRelativeTo(getOwner());
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
@@ -79,5 +99,6 @@ public class MainFrame extends JFrame {
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
     private JButton btDatyZdjec;
     private JButton btM3UList;
+    private JButton btM3UListRecursive;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }
