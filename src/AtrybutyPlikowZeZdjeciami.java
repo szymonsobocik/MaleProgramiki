@@ -24,12 +24,14 @@ import java.util.Date;
 public class AtrybutyPlikowZeZdjeciami {
 
     public static void zmienDaty(File directory) {
-        for (File zdjecie : directory.listFiles()) {
-            zdjecie.setLastModified(new Date().getTime());
-        }
+        doOperation(directory, Operation.ChangeDateOfModification);
     }
 
     public static void renameByOriginalDate(File directory) {
+        doOperation(directory, Operation.Rename);
+    }
+
+    private static void doOperation(File directory, Operation operation) {
         try {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd.HHmm");
             for (File zdjecie : directory.listFiles()) {
@@ -41,10 +43,14 @@ public class AtrybutyPlikowZeZdjeciami {
                         if (subIFDDirectory != null) {
                             Date dateTimeOriginal = subIFDDirectory.getDate(ExifSubIFDDirectory.TAG_DATETIME_ORIGINAL);
                             if (dateTimeOriginal != null) {
-                                String dateFormatted = sdf.format(dateTimeOriginal);
-                                File newFile = new File(zdjecie.getParent() + "\\" + dateFormatted + "-" + zdjecie.getName());
-                                boolean doneRenaming = zdjecie.renameTo(newFile);
-                                System.out.println("Renamed file " + zdjecie.getName() + " to " + newFile.getName() + " was " + doneRenaming);
+                                if (operation.equals(Operation.Rename)) {
+                                    String dateFormatted = sdf.format(dateTimeOriginal);
+                                    File newFile = new File(zdjecie.getParent() + "\\" + dateFormatted + "-" + zdjecie.getName());
+                                    boolean doneRenaming = zdjecie.renameTo(newFile);
+                                    System.out.println("Renamed file " + zdjecie.getName() + " to " + newFile.getName() + " was " + doneRenaming);
+                                } else if (operation.equals(Operation.ChangeDateOfModification)) {
+                                    zdjecie.setLastModified(dateTimeOriginal.getTime());
+                                }
                             }
                         }
                     }
@@ -56,6 +62,10 @@ public class AtrybutyPlikowZeZdjeciami {
             e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
         }
 
+    }
 
+    private static enum Operation {
+        Rename,
+        ChangeDateOfModification
     }
 }
