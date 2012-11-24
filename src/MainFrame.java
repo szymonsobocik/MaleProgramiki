@@ -33,6 +33,14 @@ public class MainFrame extends JFrame {
         }
     }
 
+    private void btZmianaNazwZdjecWgDatyActionPerformed(ActionEvent e) {
+        int returnVal = fileChooser.showOpenDialog(this);
+        if (returnVal == JFileChooser.APPROVE_OPTION){
+            AtrybutyPlikowZeZdjeciami.renameByOriginalDate(fileChooser.getSelectedFile());
+            JOptionPane.showMessageDialog(this, "Renaming done");
+        }
+    }
+
     private void btM3UListActionPerformed(ActionEvent e) {
         int returnVal = fileChooser.showOpenDialog(this);
         if (returnVal == JFileChooser.APPROVE_OPTION){
@@ -48,10 +56,9 @@ public class MainFrame extends JFrame {
     }
 
     private void initComponents() {
-        // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
-        btDatyZdjec = new JButton();
-        btM3UList = new JButton();
-        btM3UListRecursive = new JButton();
+        JButton btDatyZdjec = new JButton();
+        JButton btM3UList = new JButton();
+        JButton btM3UListRecursive = new JButton();
 
         //======== this ========
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -69,6 +76,18 @@ public class MainFrame extends JFrame {
             GridBagConstraints.CENTER, GridBagConstraints.BOTH,
             new Insets(0, 0, 5, 0), 0, 0));
 
+        //---- btZmianaNazwZdjecWgDaty ----
+        JButton btZmianaNazwZdjecWgDaty = new JButton("Rename photos by original date");
+        btZmianaNazwZdjecWgDaty.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                btZmianaNazwZdjecWgDatyActionPerformed(e);
+            }
+        });
+        contentPane.add(btZmianaNazwZdjecWgDaty, new GridBagConstraints(0, 1, 1, 1, 0.0, 0.0,
+                GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+                new Insets(0, 0, 5, 0), 0, 0));
+
+
         //---- btM3UList ----
         btM3UList.setText("Create M3U list");
         btM3UList.addActionListener(new ActionListener() {
@@ -76,7 +95,7 @@ public class MainFrame extends JFrame {
                 btM3UListActionPerformed(e);
             }
         });
-        contentPane.add(btM3UList, new GridBagConstraints(0, 1, 1, 1, 0.0, 0.0,
+        contentPane.add(btM3UList, new GridBagConstraints(0, 2, 1, 1, 0.0, 0.0,
             GridBagConstraints.CENTER, GridBagConstraints.BOTH,
             new Insets(0, 0, 5, 0), 0, 0));
 
@@ -88,17 +107,11 @@ public class MainFrame extends JFrame {
                 btM3UListRecursiveActionPerformed(e);
             }
         });
-        contentPane.add(btM3UListRecursive, new GridBagConstraints(0, 2, 1, 1, 0.0, 0.0,
+        contentPane.add(btM3UListRecursive, new GridBagConstraints(0, 3, 1, 1, 0.0, 0.0,
             GridBagConstraints.CENTER, GridBagConstraints.BOTH,
             new Insets(0, 0, 0, 0), 0, 0));
         pack();
         setLocationRelativeTo(getOwner());
-        // JFormDesigner - End of component initialization  //GEN-END:initComponents
     }
 
-    // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
-    private JButton btDatyZdjec;
-    private JButton btM3UList;
-    private JButton btM3UListRecursive;
-    // JFormDesigner - End of variables declaration  //GEN-END:variables
 }
