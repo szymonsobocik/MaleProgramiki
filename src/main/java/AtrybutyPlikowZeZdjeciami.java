@@ -1,18 +1,18 @@
-import com.drew.imaging.ImageMetadataReader;
+/*import com.drew.imaging.ImageMetadataReader;
 import com.drew.imaging.ImageProcessingException;
 import com.drew.metadata.Directory;
 import com.drew.metadata.Metadata;
 import com.drew.metadata.Tag;
-import com.drew.metadata.exif.ExifSubIFDDirectory;
+import com.drew.metadata.exif.ExifSubIFDDirectory;*/
 
 import java.io.File;
-import java.io.IOException;
+/*import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.attribute.FileAttributeView;
 import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.Date;*/
 
 /**
  * todo szymon opis klasy
@@ -24,15 +24,15 @@ import java.util.Date;
 public class AtrybutyPlikowZeZdjeciami {
 
     public static void zmienDaty(File directory) {
-        doOperation(directory, Operation.ChangeDateOfModification);
+//        doOperation(directory, Operation.ChangeDateOfModification);
     }
 
     public static void renameByOriginalDate(File directory) {
-        doOperation(directory, Operation.Rename);
+//        doOperation(directory, Operation.Rename);
     }
 
     private static void doOperation(File directory, Operation operation) {
-        try {
+/*        try {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd.HHmm");
             for (File zdjecie : directory.listFiles()) {
                 if (zdjecie.isFile()) {
@@ -60,7 +60,7 @@ public class AtrybutyPlikowZeZdjeciami {
             e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
         } catch (IOException e) {
             e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
-        }
+        }*/
 
     }
 
