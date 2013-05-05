@@ -9,7 +9,9 @@ public class Regex {
 
     public static void main(String[] args) {
         Regex regex = new Regex();
+        regex.test1();
         regex.test2();
+        regex.test3();
     }
 
     public void test1(){
@@ -25,4 +27,16 @@ public class Regex {
         String wynik = sql.replaceAll("(<WG_STANU_NA_DZIEN>)(.*?)(</WG_STANU_NA_DZIEN>)", "$2");
         System.out.println(wynik);
     }
+
+    private void test3() {
+        String regexImieNazwisko = "^[a-zA-ZąćęłńóśźżĄĘŁŃÓŚŹŻ'-]*\\s[a-zA-ZąćęłńóśźżĄĘŁŃÓŚŹŻ'-]+$|^$";
+        String toTest = "Adam kowalski";
+        System.out.println(toTest);
+        System.out.println("Pasuje do pustego: " + toTest.matches(regexImieNazwisko));
+        toTest = "";
+        System.out.println(toTest);
+        System.out.println("Pasuje do pustego: " + toTest.matches(regexImieNazwisko));
+
+    }
+
 }
