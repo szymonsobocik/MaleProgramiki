@@ -1,3 +1,5 @@
+import listaM3U.ListaM3U;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -44,14 +46,14 @@ public class MainFrame extends JFrame {
     private void btM3UListActionPerformed(ActionEvent e) {
         int returnVal = fileChooser.showOpenDialog(this);
         if (returnVal == JFileChooser.APPROVE_OPTION){
-            ListaM3U.utworzListeM3U(fileChooser.getSelectedFile(), false);
+            ListaM3U.newInstance().utworzListeM3U(fileChooser.getSelectedFile(), false);
         }
     }
 
     private void btM3UListRecursiveActionPerformed(ActionEvent e) {
         int returnVal = fileChooser.showOpenDialog(this);
         if (returnVal == JFileChooser.APPROVE_OPTION){
-            ListaM3U.utworzListeM3U(fileChooser.getSelectedFile(), true);
+            ListaM3U.newInstance().utworzListeM3U(fileChooser.getSelectedFile(), true);
         }
     }
 
